@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME - PyCook</title>
+
+    <!-- legatura statica pentru CSS in Django -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- meniul de sus -->
+    <header class="navbar">
+        <div class="logo">PyCook</div>
+        <nav>
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="{% url 'search_ingredients' %}">SEARCH INGREDIENTS</a>
+            <a href="{% url 'add_recipe' %}">ADD RECIPE</a>
+            <a href="{% url 'register' %}">REGISTER</a>
+            <a href="{% url 'login' %}" class="btn-login">LOGIN</a>
+        </nav>
+    </header>
+
+    <!-- continutul paginii -->
+    <main class="main-content">
+        <div class="home-container">
+            <!-- imaginea principala folosind eticheta static din Django -->
+            <img src="{% static 'images/logo1.png' %}" alt="Gatesti cu drag din ce ai - PyCook" style="max-width: 400px; height: auto; margin-bottom: 20px;">
+            <p class="subtitle">Gaseste retete rapide din ce ai prin frigider sau lasa-ne sa te inspiram.</p>
+
+            <!-- sectiunea cu carduri pentru retete -->
+            <div class="recipes-grid">
+                <!-- exemplu card 1 legat catre detalii -->
+                <a href="{% url 'recipe_detail' %}" style="text-decoration: none; color: inherit;">
+                    <div class="recipe-card">
+                        <h3>paste carbonara rapide</h3>
+                        <p class="calories">calorii: 450 kcal</p>
+                        <span class="badge aprobat">aprobat</span>
+                    </div>
+                </a>
+
+                <!-- exemplu card 2 -->
+                <div class="recipe-card">
+                    <h3>ciorba de perisoare</h3>
+                    <p class="calories">calorii: 320 kcal</p>
+                    <span class="badge aprobat">aprobat</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- subsolul paginii cu imaginea caligrafica -->
+    <footer>
+        <p>&copy; 2026 PyCook - Emilia - Iuliana - Gabriela - Patricia</p>
+    </footer>
+
+</body>
+</html>

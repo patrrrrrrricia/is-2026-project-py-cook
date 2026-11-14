@@ -1,19 +1,31 @@
-/* setari generale pentru corp si paleta de culori */
+/* paleta de culori și stil general */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #FBF7F4; /* milk - fundal general */
+    background: linear-gradient(to bottom, #FBF7F4, #E8D8CE); /* degrade de la Milk la Blush Oat */
+    background-attachment: fixed; /* face ca fundalul sa ramana stabil pentru scroll */
     color: #3B2F2A; /* espresso brown - text principal */
+    min-height: 100vh;
 }
 
-/* meniul de sus al aplicatiei */
+/* meniul de sus */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3B2F2A; /* espresso brown */
-    padding: 15px 40px;
-    color: #FBF7F4;
+    background-color: #FBF7F4;
+    margin: 20px 40px;
+    padding: 18px 30px;
+    color: #3B2F2A;
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px #62222f, -8px -8px 20px #ffffff;
+    transition: all 0.3s ease; /*tranzitie pt navbar*/
+}
+
+/* efectul care se activeaza pt mouse */
+.navbar:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 12px 28px #d9cec6, -12px -12px 28px #ffffff;
 }
 
 .navbar .logo {
@@ -21,6 +33,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: #3B2F2A;
 }
 
 .navbar nav {
@@ -30,28 +43,36 @@ body {
 }
 
 .navbar nav a {
-    color: #FBF7F4;
+    color: #3B2F2A;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 1px;
+    font-weight: bold;
     transition: 0.3s;
 }
 
 .navbar nav a:hover {
-    color: #FBF7F4; /* la hover */
+    color: #62222f; /* burgundy la hover */
 }
 
 .navbar nav .btn-login {
     background-color: #62222f; /* burgundy - accent */
-    padding: 8px 16px;
-    border-radius: 4px;
+    color: #FBF7F4;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba(98, 34, 47, 0.2);
+}
+
+.navbar nav .btn-login:hover {
+    background-color: #3B2F2A;
+    color: #FBF7F4;
 }
 
 /* continutul principal */
 .main-content {
-    padding: 40px 20px;
-    min-height: 75vh;
+    padding: 20px 20px 50px 20px;
+    min-height: 70vh;
 }
 
 .home-container {
@@ -72,21 +93,27 @@ body {
     font-size: 1.1rem;
 }
 
-/* grid pentru cardurile de retete de pe pagina principala */
+/* grid pentru cardurile de retete */
 .recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 30px;
     margin-top: 20px;
+    padding: 10px;
 }
 
 .recipe-card {
-    background-color: #FBF7F4; /* blush oat - fundalul cardului */
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 4px 4px 15px rgba(59, 47, 42, 0.08);
+    background: #FBF7F4;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 10px 10px 25px #e2d8d2, -10px -10px 25px #ffffff;
     text-align: left;
-    border-left: 4px solid #62222f; /* burgundy */
+    border-left: 6px solid #62222f; /* burgundy */
+    transition: 0.3s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
 }
 
 .recipe-card h3 {
@@ -97,17 +124,17 @@ body {
 
 .calories {
     font-size: 0.9rem;
-    color: #555;
+    color: #7A6258;
     margin: 10px 0;
 }
 
 /* eticheta de status pentru retete */
 .badge {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 6px 12px;
     font-size: 0.75rem;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 8px;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -117,7 +144,7 @@ body {
     color: #FBF7F4; /* milk */
 }
 
-/* subsolul paginii */
+/* subsolul paginii (în armonie cu navbar-ul rotunjit) */
 footer {
     text-align: center;
     padding: 20px;
@@ -125,4 +152,117 @@ footer {
     color: #FBF7F4;
     font-size: 0.85rem;
     letter-spacing: 1px;
+    margin: 40px 20px 20px 20px;
+    border-radius: 16px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px #2a211d, -8px -8px 20px #4c3d37; /* umbre adaptate pentru nuanta inchisa*/
+    transition: all 0.3s ease; /* tranzitie */
+}
+
+footer:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 12px 26px #241c19, -12px -12px 26px #52423c;
+}
+
+/* stiluri pentru pagina de login (cardul tău modern și fin) */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    color: #3B2F2A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    width: 320px;
+    flex-direction: column;
+    gap: 35px;
+    background: #FBF7F4;
+    box-shadow: 14px 14px 30px #e2d8d2, -14px -14px 30px #ffffff;
+    border-radius: 20px;
+}
+
+.inputBox {
+    position: relative;
+    width: 250px;
+}
+
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: #3B2F2A;
+    font-size: 1em;
+    background: transparent;
+    border-left: 2px solid #62222f;
+    border-bottom: 2px solid #62222f;
+    transition: 0.3s;
+    border-bottom-left-radius: 10px;
+}
+
+.inputBox span {
+    margin-top: 5px;
+    position: absolute;
+    left: 0;
+    transform: translateY(-4px);
+    margin-left: 10px;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #7A6258;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 3px;
+    border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    transform: translateX(113px) translateY(-15px);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    background: #62222f;
+    letter-spacing: 0.2em;
+    color: #FBF7F4;
+    border-radius: 6px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+    border: 2px solid #62222f;
+    border-radius: 10px;
+}
+
+.enter {
+    height: 45px;
+    width: 120px;
+    border-radius: 10px;
+    border: 2px solid #62222f;
+    cursor: pointer;
+    background-color: transparent;
+    color: #3B2F2A;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 1em;
+}
+
+.enter:hover {
+    background-color: #62222f;
+    color: #FBF7F4;
+    box-shadow: 4px 4px 12px rgba(98, 34, 47, 0.3);
 }
