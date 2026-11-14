@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
 /* paleta de culori și stil general */
 body {
     margin: 0;

@@ -7,7 +7,7 @@
     <title>HOME - PyCook</title>
 
     <!-- legatura statica pentru CSS in Django -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
@@ -33,7 +33,7 @@
             <!-- sectiunea cu carduri pentru retete -->
             <div class="recipes-grid">
                 <!-- exemplu card 1 legat catre detalii -->
-                <a href="{% url 'recipe_detail' %}" style="text-decoration: none; color: inherit;">
+                <a href="{% url 'recipe_detail' pk=1 %}" style="text-decoration: none; color: inherit;">
                     <div class="recipe-card">
                         <h3>paste carbonara rapide</h3>
                         <p class="calories">calorii: 450 kcal</p>
