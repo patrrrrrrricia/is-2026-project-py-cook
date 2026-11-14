@@ -12,10 +12,13 @@ def normalizeaza(nume):
 
 
 def incarca_calorii():
-    """Întoarce dicționarul {ingredient: kcal la 100 g} din calorii.json."""
-    with open(FISIER_CALORII, encoding="utf-8") as f:
-        return {normalizeaza(nume): kcal for nume, kcal in json.load(f).items()}
+    """Întoarce dicționarul {ingredient: kcal la 100 g} din tabelul Ingredient."""
+    from recipes.models import Ingredient
 
+    return {
+        normalizeaza(nume): kcal
+        for nume, kcal in Ingredient.objects.values_list("nume", "kcal_per_100g")
+    }
 
 def calculeaza_calorii(ingrediente):
     """
