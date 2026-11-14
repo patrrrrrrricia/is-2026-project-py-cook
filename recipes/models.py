@@ -64,7 +64,6 @@ class RecipeIngredient(models.Model):
     def __str__(self):
         return f"{self.reteta.titlu} - {self.ingredient.nume} ({self.cantitate_grame}g)"
 
-
 class Favorite(models.Model):
     utilizator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
