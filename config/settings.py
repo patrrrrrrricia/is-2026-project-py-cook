@@ -128,3 +128,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# setari pentru fisierele statice (css, imagini, etc.)
+STATIC_URL = 'static/'

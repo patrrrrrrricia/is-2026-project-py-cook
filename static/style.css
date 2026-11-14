@@ -1,0 +1,128 @@
+/* setari generale pentru corp si paleta de culori */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FBF7F4; /* milk - fundal general */
+    color: #3B2F2A; /* espresso brown - text principal */
+}
+
+/* meniul de sus al aplicatiei */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3B2F2A; /* espresso brown */
+    padding: 15px 40px;
+    color: #FBF7F4;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.navbar nav a {
+    color: #FBF7F4;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #FBF7F4; /* la hover */
+}
+
+.navbar nav .btn-login {
+    background-color: #62222f; /* burgundy - accent */
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+/* continutul principal */
+.main-content {
+    padding: 40px 20px;
+    min-height: 75vh;
+}
+
+.home-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home-container h1 {
+    color: #3B2F2A;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #7A6258; /* cocoa taupe pentru text secundar */
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+/* grid pentru cardurile de retete de pe pagina principala */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.recipe-card {
+    background-color: #FBF7F4; /* blush oat - fundalul cardului */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 15px rgba(59, 47, 42, 0.08);
+    text-align: left;
+    border-left: 4px solid #62222f; /* burgundy */
+}
+
+.recipe-card h3 {
+    margin-top: 0;
+    color: #3B2F2A;
+    font-size: 1.2rem;
+}
+
+.calories {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* eticheta de status pentru retete */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.badge.aprobat {
+    background-color: #62222f; /* burgundy */
+    color: #FBF7F4; /* milk */
+}
+
+/* subsolul paginii */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3B2F2A; /* espresso brown */
+    color: #FBF7F4;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
