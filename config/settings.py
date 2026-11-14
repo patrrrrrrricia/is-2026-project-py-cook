@@ -129,5 +129,5 @@ MAILERS = {
     },
 }
 
-# setari pentru fisierele statice (css, imagini, etc.)
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
