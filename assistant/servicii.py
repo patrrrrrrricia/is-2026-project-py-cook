@@ -1,47 +1,42 @@
-from django.db import transaction
+from recipes.models import Ingredient
+from recipes.servicii import salveaza_reteta  # funcția Colegei 2 (schimbă calea dacă e în alt fișier)
 
-from recipes.models import Ingredient, Recipe, RecipeIngredient
-
-from .calorii import calculeaza_calorii, normalizeaza
+from .calorii import normalizeaza
 
 
-@transaction.atomic
 def salveaza_reteta_ai(reteta, autor=None):
     """
-    Salvează în baza de date o rețetă primită de la genereaza_reteta().
+    Pregătește o rețetă primită de la genereaza_reteta() și o salvează
+    cu funcția generală salveaza_reteta() a Colegei 2.
     Rețeta intră cu status PENDING (merge la aprobare la admin).
-    Întoarce (obiectul Recipe, lista ingredientelor fără calorii în tabel).
+    Întoarce (obiectul Recipe, lista ingredientelor care nu erau în tabel).
     """
-    total_kcal, necunoscute = calculeaza_calorii(reteta["ingrediente"])
+    # Numele ingredientelor din baza de date, căutate fără diacritice:
+    # "roșie" de la AI -> "rosie" din tabel
+    nume_din_tabel = {
+        normalizeaza(nume): nume
+        for nume in Ingredient.objects.values_list("nume", flat=True)
+    }
 
-    pasi = "\n".join(f"{nr}. {pas}" for nr, pas in enumerate(reteta["pasi"], start=1))
-    obiect = Recipe.objects.create(
-        titlu=reteta["titlu"],
-        pasi_preparare=pasi,
-        timp_preparare_min=reteta["timp_minute"],
-        calorii_totale=total_kcal,
-        sursa="AI",
-        status="PENDING",
-        autor=autor,
-    )
-
-    # Ingredientele existente, căutate după nume fără diacritice
-    existente = {normalizeaza(ing.nume): ing for ing in Ingredient.objects.all()}
-
+    # Potrivim numele și adunăm gramele dacă AI-ul pune același ingredient de două ori
+    cantitati = {}
     for item in reteta["ingrediente"]:
         cheie = normalizeaza(item["nume"])
-        ingredient = existente.get(cheie)
-        if ingredient is None:
-            # Ingredient nou: îl adăugăm cu 0 kcal, adminul îi poate completa caloriile
-            ingredient = Ingredient.objects.create(nume=cheie, kcal_per_100g=0)
-            existente[cheie] = ingredient
+        nume = nume_din_tabel.get(cheie, cheie)
+        cantitati[nume] = cantitati.get(nume, 0) + item["grame"]
 
-        legatura, creata = RecipeIngredient.objects.get_or_create(
-            reteta=obiect, ingredient=ingredient,
-            defaults={"cantitate_grame": item["grame"]},
-        )
-        if not creata:  # același ingredient de două ori în rețetă: adunăm gramele
-            legatura.cantitate_grame += item["grame"]
-            legatura.save()
+    necunoscute = [nume for nume in cantitati if normalizeaza(nume) not in nume_din_tabel]
 
+    pasi = "\n".join(f"{nr}. {pas}" for nr, pas in enumerate(reteta["pasi"], start=1))
+
+    obiect = salveaza_reteta(
+        titlu=reteta["titlu"],
+        descriere="",
+        pasi_preparare=pasi,
+        timp_preparare_min=reteta["timp_minute"],
+        ingrediente=[{"nume": n, "cantitate_grame": g} for n, g in cantitati.items()],
+        autor=autor,
+        status="PENDING",
+        sursa="AI",
+    )
     return obiect, necunoscute
