@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN - PyCook</title>
+
+    <!-- legatura statica pentru CSS in Django -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+     <!-- meniul de sus -->
+    <header class="navbar">
+        <div class="logo">PyCook</div>
+        <nav>
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="{% url 'search_ingredients' %}">SEARCH INGREDIENTS</a>
+            <a href="{% url 'add_recipe' %}">ADD RECIPE</a>
+            <a href="{% url 'register' %}">REGISTER</a>
+            <a href="{% url 'login' %}" class="btn-login">LOGIN</a>
+        </nav>
+    </header>
+
+    <!-- continutul principal cu formularul de login -->
+    <main class="main-content" style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+        <div class="container">
+            <div class="card" style="min-height: 400px; gap: 25px;">
+                <form method="POST" style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 20px;">
+                    {% csrf_token %}
+                    <a class="login" style="margin-bottom: 10px;">LOG IN</a>
+
+                    <div class="inputBox" style="width: 100%;">
+                        <input type="text" required="required">
+                        <span class="user">Username</span>
+                    </div>
+
+                    <div class="inputBox" style="width: 100%;">
+                        <input type="password" required="required">
+                        <span>Password</span>
+                    </div>
+
+                    <button class="enter" type="submit" style="width: 120px; margin-top: 25px; margin-bottom: 0;">Enter</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- subsolul paginii -->
+    <footer>
+        <p>&copy; 2026 PyCook - Emilia - Iuliana - Gabriela - Patricia</p>
+    </footer>
+
+</body>
+</html>

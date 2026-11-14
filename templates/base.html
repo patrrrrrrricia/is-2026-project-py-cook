@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PYCOOK{% endblock %}</title>
+
+    <!-- legatura statica pentru CSS in Django -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- meniul de sus -->
+    <header class="navbar">
+        <div class="logo">PyCook</div>
+        <nav>
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="{% url 'search_ingredients' %}">SEARCH INGREDIENTS</a>
+            <a href="{% url 'add_recipe' %}">ADD RECIPE</a>
+            <a href="{% url 'recipe_detail' %}">DETAILS</a>
+            <a href="{% url 'register' %}">REGISTER</a>
+            <a href="{% url 'login' %}" class="btn-login">LOGIN</a>
+        </nav>
+    </header>
+
+    <!-- continutul principal care va fi preluat din celelalte pagini -->
+    <main class="main-content">
+        {% block content %}
+        <!-- aici va veni continutul paginilor in Django -->
+        {% endblock %}
+    </main>
+
+    <!-- subsolul paginii -->
+    <footer>
+        <p>&copy; 2026 PyCook - Emilia - Iuliana - Gabriela - Patricia</p>
+    </footer>
+
+</body>
+</html>
