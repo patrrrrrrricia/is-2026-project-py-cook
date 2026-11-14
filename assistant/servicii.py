@@ -1,5 +1,5 @@
 from recipes.models import Ingredient
-from recipes.servicii import salveaza_reteta  # funcția Colegei 2 (schimbă calea dacă e în alt fișier)
+from recipes.service import salveaza_reteta  # funcția Colegei 2 (schimbă calea dacă e în alt fișier)
 
 from .calorii import normalizeaza
 
