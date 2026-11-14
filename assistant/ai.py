@@ -6,10 +6,14 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-#Incarca cheia din fis .env
+# Încarcă cheia din fișierul .env de lângă manage.py
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
-MODEL = "gemini-3.5-flash-lite"
+# Modelele încercate pe rând: dacă primul e ocupat, trece la următorul
+MODELE = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-3.7-flash"]
+
+# Cât așteptăm răspunsul unui model, în milisecunde (60 de secunde)
+TIMP_MAXIM_MS = 60000
 
 PROMPT = """Ești un bucătar. Inventează o rețetă folosind în principal aceste ingrediente: {ingrediente}.
 Poți presupune că utilizatorul are sare, piper, ulei și apă.
@@ -35,22 +39,25 @@ def genereaza_reteta(ingrediente):
 
     client = genai.Client(
         api_key=cheie,
-        http_options=types.HttpOptions(timeout=60000),  # 60 de secunde, în milisecunde
+        http_options=types.HttpOptions(timeout=TIMP_MAXIM_MS),
     )
-    try:
-        raspuns = client.models.generate_content(
-            model=MODEL,
-            contents=PROMPT.format(ingrediente=", ".join(ingrediente)),
-            config=types.GenerateContentConfig(
-                response_mime_type="application/json",
-                thinking_config=types.ThinkingConfig(thinking_level="low"),
-            ),
-        )
-        reteta = json.loads(raspuns.text)
-    except json.JSONDecodeError:
-        raise EroareAI("AI-ul nu a răspuns cu JSON valid")
-    except Exception as e:
-        raise EroareAI(f"Eroare la apelul către AI: {e}")
+
+    ultima_eroare = None
+    for model in MODELE:
+        try:
+            raspuns = client.models.generate_content(
+                model=model,
+                contents=PROMPT.format(ingrediente=", ".join(ingrediente)),
+                config=types.GenerateContentConfig(response_mime_type="application/json"),
+            )
+            reteta = json.loads(raspuns.text)
+            break  # a mers, ieșim din buclă
+        except json.JSONDecodeError:
+            raise EroareAI("AI-ul nu a răspuns cu JSON valid")
+        except Exception as e:
+            ultima_eroare = e  # model ocupat sau indisponibil: încercăm următorul
+    else:
+        raise EroareAI(f"Niciun model AI nu a răspuns: {ultima_eroare}")
 
     for camp in ("titlu", "ingrediente", "pasi", "timp_minute"):
         if camp not in reteta:
@@ -60,6 +67,7 @@ def genereaza_reteta(ingrediente):
     return reteta
 
 
+# Test: rulează fișierul direct cu  python assistant/ai.py
 if __name__ == "__main__":
     from pprint import pprint
     pprint(genereaza_reteta(["ou", "brânză telemea", "roșie"]))
