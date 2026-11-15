@@ -167,7 +167,7 @@ footer:hover {
     box-shadow: 12px 12px 26px #241c19, -12px -12px 26px #52423c;
 }
 
-/* stiluri pentru pagina de login (cardul tău modern și fin) */
+/* stiluri pentru pagina de login*/
 .container {
     display: flex;
     justify-content: center;
@@ -183,22 +183,39 @@ footer:hover {
     font-size: x-large;
 }
 
-.card {
+/*.card {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 350px;
     width: 320px;
+    padding: 30px;
     flex-direction: column;
-    gap: 35px;
+    gap: 25px;
     background: #FBF7F4;
     box-shadow: 14px 14px 30px #e2d8d2, -14px -14px 30px #ffffff;
     border-radius: 20px;
+}*/
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+    width: 380px;
+    max-width: 100%;
+    padding: 35px;
+    flex-direction: column;
+    gap: 25px;
+    background: #FBF7F4;
+    box-shadow: 14px 14px 30px #e2d8d2, -14px -14px 30px #ffffff;
+    border-radius: 20px;
+    box-sizing: border-box;
 }
 
 .inputBox {
     position: relative;
-    width: 250px;
+    width: 100%;
 }
 
 .inputBox input {
