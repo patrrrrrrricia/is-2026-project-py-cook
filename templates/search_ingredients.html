@@ -25,6 +25,21 @@
 
     <!-- continutul principal -->
     <main class="main-content">
+        {% if query %}
+          <h2 style="color: #3B2F2A; margin-top: 40px;">Rezultate pentru „{{ query }}”</h2>
+          <div class="recipes-grid">
+             {% for recipe in recipes %}
+                <div class="recipe-card">
+                  <h3><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.titlu }}</a></h3>
+                  <p class="calories">calorii: {{ recipe.calorii_totale|floatformat:0 }} kcal</p>
+                  <p>Ai: {{ recipe.potrivite|join:", " }}</p>
+                  {% if recipe.lipsa %}<p>Îți lipsește: {{ recipe.lipsa|join:", " }}</p>{% endif %}
+                </div>
+             {% empty %}
+                <p style="text-align: center; color: #666; grid-column: 1 / -1;">Nu am găsit nicio rețetă aprobată cu aceste ingrediente.</p>
+             {% endfor %}
+          </div>
+        {% endif %}
         <div class="home-container">
             <h1 style="color: #3B2F2A; font-size: 2rem; margin-bottom: 10px;">Ce ai prin frigider?</h1>
             <p class="subtitle">Introdu ingredientele separate prin virgula si descopera retete rapide.</p>
@@ -33,7 +48,7 @@
             <div class="card" style="margin: 0 auto; width: 100%; max-width: 450px; min-height: auto; padding: 40px;">
                 <form method="GET" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
                     <div class="inputBox" style="width: 100%; margin-bottom: 20px;">
-                        <input type="text" name="ingredients" required="required">
+                        <input type="text" name="ingredients" value="{{ query }}" required="required">
                         <span>Ingrediente (ex: oua, branza)</span>
                     </div>
                     <button class="enter" type="submit" style="width: 100%; margin-top: 10px; margin-bottom: 0;">Cauta retete</button>
