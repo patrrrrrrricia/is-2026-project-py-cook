@@ -3,10 +3,13 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from .views import RegisterView
+from .views import RegisterView, login_page_view
 
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
-    path('login/', TokenObtainPairView.as_view(), name='login_token'), #aici se da token-ul
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # Ruta pentru API-ul de înregistrare (JSON)
+    path('register/api/', RegisterView.as_view(), name='api_register'),
+
+    # Ruta pentru API-ul de Token JWT (dacă îl folosiți pentru teste cu Postman/frontend separat)
+    path('api/token/', TokenObtainPairView.as_view(), name='login_token'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
