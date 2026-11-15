@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME - PyCook</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="icon" href="{% static 'images/pycook.png' %}" type="image/png">
 </head>
 <body>
 
@@ -23,7 +24,7 @@
     <main class="main-content">
         <div class="home-container">
             <h1 style="color: #3B2F2A; font-size: 2rem; margin-bottom: 10px;">Bun venit la PyCook!</h1>
-            <p class="subtitle">Găsește rețete rapide din ce ai prin frigider sau adaugă propriile tale preparate.</p>
+            <p class="subtitle">Gaseste retete rapide din ce ai prin frigider sau adauga propriile tale preparate.</p>
 
             <div class="recipes-grid">
                 {% for recipe in recipes %}
@@ -33,7 +34,7 @@
                         <span class="badge {{ recipe.status|lower }}">{{ recipe.get_status_display }}</span>
                     </div>
                 {% empty %}
-                    <p style="text-align: center; color: #666; grid-column: 1 / -1;">Nu există rețete adăugate momentan. Intră la "Add Recipe" și adaugă prima rețetă!</p>
+                    <p style="text-align: center; color: #666; grid-column: 1 / -1;">Nu exista retete adtugate momentan. Intra la "Add Recipe" si adauga prima reteta!</p>
                 {% endfor %}
             </div>
         </div>
