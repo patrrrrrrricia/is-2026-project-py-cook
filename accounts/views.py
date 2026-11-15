@@ -7,8 +7,6 @@ from .serializers import RegisterSerializer
 
 User = get_user_model()
 
-
-# Endpoint-ul tău de API existent
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     permission_classes = (AllowAny,)
