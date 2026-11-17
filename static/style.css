@@ -1,17 +1,17 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'style.css' %}">
 
-/* paleta de culori și stil general */
+/* paleta de culori si stil general */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #FBF7F4, #E8D8CE); /* degrade de la Milk la Blush Oat */
+    background: linear-gradient(to bottom, #FBF7F4, #E8D8CE); /* degrade de la milk la blush oat */
     background-attachment: fixed; /* face ca fundalul sa ramana stabil pentru scroll */
     color: #3B2F2A; /* espresso brown - text principal */
     min-height: 100vh;
 }
 
-/* meniul de sus */
+/* meniul de sus (navbar) */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -22,10 +22,10 @@ body {
     color: #3B2F2A;
     border-radius: 20px;
     box-shadow: 8px 8px 20px #62222f, -8px -8px 20px #ffffff;
-    transition: all 0.3s ease; /*tranzitie pt navbar*/
+    transition: all 0.3s ease; /* tranzitie lina pentru navbar */
 }
 
-/* efectul care se activeaza pt mouse */
+/* efectul care se activeaza la trecerea cursorului peste navbar */
 .navbar:hover {
     transform: translateY(-4px);
     box-shadow: 12px 12px 28px #d9cec6, -12px -12px 28px #ffffff;
@@ -56,11 +56,11 @@ body {
 }
 
 .navbar nav a:hover {
-    color: #62222f; /* burgundy la hover */
+    color: #62222f; /* culoare burgund la hover pentru linkuri */
 }
 
 .navbar nav .btn-login {
-    background-color: #62222f; /* burgundy - accent */
+    background-color: #62222f; /* burgund - accent vizual principal */
     color: #FBF7F4;
     padding: 10px 20px;
     border-radius: 12px;
@@ -72,7 +72,7 @@ body {
     color: #FBF7F4;
 }
 
-/* continutul principal */
+/* continutul principal al paginilor */
 .main-content {
     padding: 20px 20px 50px 20px;
     min-height: 70vh;
@@ -91,12 +91,11 @@ body {
 }
 
 .subtitle {
-    color: #7A6258; /* cocoa taupe pentru text secundar */
+    color: #7A6258; /* cocoa taupe pentru textul secundar */
     margin-bottom: 40px;
     font-size: 1.1rem;
 }
-
-/* grid pentru cardurile de retete */
+/* grid pentru aranjarea cardurilor de retete in pagina */
 .recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -105,16 +104,18 @@ body {
     padding: 10px;
 }
 
+/* cardul de reteta original cu colturile rotunjite si chenar elegant in stanga */
 .recipe-card {
     background: #FBF7F4;
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 16px; /* colturi rotunjite clasice */
     box-shadow: 10px 10px 25px #e2d8d2, -10px -10px 25px #ffffff;
     text-align: left;
-    border-left: 6px solid #62222f; /* burgundy */
+    border-left: 6px solid #62222f; /* chenar gros burgund in partea stanga */
     transition: 0.3s;
 }
 
+/* efectul de ridicare la trecerea cursorului peste card */
 .recipe-card:hover {
     transform: translateY(-5px);
 }
@@ -131,7 +132,7 @@ body {
     margin: 10px 0;
 }
 
-/* eticheta de status pentru retete */
+/* eticheta de status generala pentru toate badge-urile */
 .badge {
     display: inline-block;
     padding: 6px 12px;
@@ -140,26 +141,36 @@ body {
     border-radius: 8px;
     font-weight: bold;
     letter-spacing: 1px;
+    background-color: #62222f; /* fundal burgund general pentru orice status */
+    color: #FBF7F4;            /* text crem milk */
 }
 
-.badge.aprobat {
-    background-color: #62222f; /* burgundy */
-    color: #FBF7F4; /* milk */
+/* asiguram ca toate starile folosesc acelasi stil frumos */
+.badge.aprobat,
+.badge.approved,
+.badge.in-asteptare,
+.badge.pending {
+    background-color: #62222f;
+    color: #FBF7F4;
+}
+.badge.in-asteptare, .badge.pending {
+    background-color: #62222f;
+    color: #FBF7F4;
 }
 
-/* subsolul paginii (în armonie cu navbar-ul rotunjit) */
+/* subsolul paginii principal in armonie cu designul general */
 footer {
-    text-align: center;
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
     background-color: #3B2F2A; /* espresso brown */
     color: #FBF7F4;
     font-size: 0.85rem;
     letter-spacing: 1px;
     margin: 40px 20px 20px 20px;
-    border-radius: 16px;
     border-radius: 20px;
-    box-shadow: 8px 8px 20px #2a211d, -8px -8px 20px #4c3d37; /* umbre adaptate pentru nuanta inchisa*/
-    transition: all 0.3s ease; /* tranzitie */
+    box-shadow: 8px 8px 20px #2a211d, -8px -8px 20px #4c3d37; /* umbre adaptate pentru nuanta inchisa */
+    transition: all 0.3s ease;
 }
 
 footer:hover {
@@ -167,7 +178,7 @@ footer:hover {
     box-shadow: 12px 12px 26px #241c19, -12px -12px 26px #52423c;
 }
 
-/* stiluri pentru pagina de login*/
+/* stiluri pentru pagina de login si campurile de formular */
 .container {
     display: flex;
     justify-content: center;
@@ -182,20 +193,6 @@ footer:hover {
     font-weight: bold;
     font-size: x-large;
 }
-
-/*.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 350px;
-    width: 320px;
-    padding: 30px;
-    flex-direction: column;
-    gap: 25px;
-    background: #FBF7F4;
-    box-shadow: 14px 14px 30px #e2d8d2, -14px -14px 30px #ffffff;
-    border-radius: 20px;
-}*/
 
 .card {
     display: flex;
@@ -285,4 +282,154 @@ footer:hover {
     background-color: #62222f;
     color: #FBF7F4;
     box-shadow: 4px 4px 12px rgba(98, 34, 47, 0.3);
+}
+
+/* variabile si configurare pentru dark/light mode */
+:root {
+    --bg-color: linear-gradient(to bottom, #FBF7F4, #E8D8CE);
+    --card-bg: #FBF7F4;
+    --card-text: #3B2F2A;
+    --text-color: #3B2F2A;
+    --footer-bg: #3B2F2A;
+    --footer-text: #FBF7F4;
+    --shadow-light: #ffffff;
+    --shadow-dark: #e2d8d2;
+}
+
+body:has(.dark-mode-toggle:checked) {
+    --bg-color: linear-gradient(to bottom, #FBF7F4 50%, #3B2F2A 100%);
+    --card-bg: #FBF7F4;
+    --card-text: #3B2F2A;
+    --text-color: #3B2F2A;
+    --footer-bg: #3B2F2A;
+    --footer-text: #FBF7F4;
+    --shadow-light: #ffffff;
+    --shadow-dark: #b8aaa1;
+}
+
+html, body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+body {
+    background: var(--bg-color) !important;
+    background-attachment: fixed !important;
+    color: var(--text-color);
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+body:has(.dark-mode-toggle:checked) .home-container h1,
+body:has(.dark-mode-toggle:checked) .home-container .subtitle {
+    color: #3B2F2A !important;
+}
+
+.recipe-card, .card {
+    background: var(--card-bg) !important;
+    color: var(--card-text) !important;
+    box-shadow: 10px 10px 25px var(--shadow-dark), -10px -10px 25px var(--shadow-light) !important;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* butoanele sau panourile orizontale elegante din footer */
+.footer-action-panel {
+    border-radius: 8px;
+    background: #3B2F2A;
+    border: 1px solid rgba(251, 247, 244, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.footer-action-panel:hover {
+    background: rgba(251, 247, 244, 0.1);
+    border-color: rgba(251, 247, 244, 0.4);
+}
+
+.footer-action-panel span {
+    padding: 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FBF7F4;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none !important;
+}
+
+.footer-action-panel svg {
+    fill: #FBF7F4 !important;
+}
+
+/* containerul care pozitionează elementele artistice deasupra footer-ului */
+.artistic-footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 40px auto 10px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* panourile stilizate inspirate de input-uri neterminate (arta vizuala asimetrica) */
+.artistic-panel {
+    width: 42%; /* latime mare, dar oprita inainte de mijloc pentru efect artistic */
+    height: 44px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* panoul stang - stil input neterminat care lasa deschis in partea dreapta */
+.left-panel {
+    border-top: none;
+    border-right: none; /* lasa linia deschisa spre centru */
+    border-bottom: 2px solid #62222f; /* chenar burgund stil input login */
+    border-left: 2px solid #62222f;
+    border-bottom-left-radius: 12px;
+}
+
+/* panoul drept - stil input neterminat care lasa deschis in partea stanga */
+.right-panel {
+    border-top: none;
+    border-left: none; /* lasa linia deschisa spre centru */
+    border-bottom: 2px solid #62222f; /* chenar burgund stil input login */
+    border-right: 2px solid #62222f;
+    border-bottom-right-radius: 12px;
+}
+
+/* efect fin la trecerea cursorului peste panourile artistice */
+.artistic-panel:hover {
+    background: rgba(98, 34, 47, 0.05);
+}
+
+/* stilizarea textului din interiorul liniilor artistice de deasupra footer-ului */
+.artistic-panel span {
+    padding: 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3B2F2A;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* asigurarea culorii corecte pentru iconitele svg din panouri */
+.artistic-panel svg {
+    fill: #3B2F2A !important;
 }
